@@ -109,7 +109,7 @@ static zrtp_status_t zrtp_ecdh_initialize( zrtp_pk_scheme_t *self,
 	bnEnd (&Gy);
 	bnEnd (&n);
 	
-	ZRTP_LOG(1,(_ZTU_,"\tDH TEST: zrtp_ecdh_initialize() for %.4s was executed by %llums.\n", self->base.type, zrtp_time_now()-start_ts));
+	ZRTP_LOG(3,(_ZTU_,"\tDH TEST: zrtp_ecdh_initialize() for %.4s was executed by %llums.\n", self->base.type, zrtp_time_now()-start_ts));
 	return s;
 }
 
@@ -165,7 +165,7 @@ static zrtp_status_t zrtp_ecdh_compute( zrtp_pk_scheme_t *self,
 	bnEnd (&rslty);
 	bnEnd (&P);
     
-	ZRTP_LOG(1,(_ZTU_,"\tDH TEST: zrtp_ecdh_compute() for %.4s was executed by %llums.\n", self->base.type, zrtp_time_now()-start_ts));
+	ZRTP_LOG(3,(_ZTU_,"\tDH TEST: zrtp_ecdh_compute() for %.4s was executed by %llums.\n", self->base.type, zrtp_time_now()-start_ts));
     return zrtp_status_ok;
 }
 
@@ -248,7 +248,7 @@ static zrtp_status_t zrtp_ecdh_validate( zrtp_pk_scheme_t *self,
 	bnEnd (&P);
 	bnEnd (&b);
 	
-	ZRTP_LOG(1,(_ZTU_,"\tDH TEST: zrtp_ecdh_validate() for %.4s was executed by %llums.\n", self->base.type, zrtp_time_now()-start_ts));
+	ZRTP_LOG(3,(_ZTU_,"\tDH TEST: zrtp_ecdh_validate() for %.4s was executed by %llums.\n", self->base.type, zrtp_time_now()-start_ts));
     return s;
 }
 
