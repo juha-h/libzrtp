@@ -222,7 +222,7 @@ zrtp_status_t zrtp_session_init( zrtp_global_t* zrtp,
 	 * If profile structure isn't provided, generate default.
 	 */	 
     if (!profile) {
-		ZRTP_LOG(1, (_ZTU_,"Profile in NULL - loading default one.\n"));
+		ZRTP_LOG(1, (_ZTU_,"Profile is NULL - loading default one.\n"));
 		zrtp_profile_defaults(&new_session->profile, zrtp);		
     } else {
 		ZRTP_LOG(1, (_ZTU_,"Loading User's profile:\n"));
