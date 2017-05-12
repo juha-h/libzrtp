@@ -165,7 +165,7 @@ zrtp_status_t zrtp_process_rtp(zrtp_stream_t *stream, char* packet, unsigned int
 	case ZRTP_STATE_PENDINGCLEAR:
 		if (ZRTP_NONE == info.type) {	
 			/* Add dropped media to the entropy hash */
-			ZRTP_LOG(1,(_ZTU_,"Add %d bytes of entropy to the RNG pool.\n", *length));
+			ZRTP_LOG(3,(_ZTU_,"Add %d bytes of entropy to the RNG pool.\n", *length));
 			zrtp_entropy_add(stream->zrtp, (unsigned char*)packet, *length);
 			
 			return zrtp_status_drop;
