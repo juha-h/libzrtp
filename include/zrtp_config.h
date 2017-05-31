@@ -119,6 +119,20 @@
  */
 #define ZRTP_BYTE_ORDER ZBO_LITTLE_ENDIAN
 
+#elif defined(__hppa__) || defined(__hppa64__)
+
+/*
+ * PA-RISC, big endian
+ */
+#define ZRTP_BYTE_ORDER ZBO_BIG_ENDIAN
+
+#elif defined(__alpha__)
+
+/*
+ * Alpha, little endian
+ */
+#define ZRTP_BYTE_ORDER ZBO_LITTLE_ENDIAN
+
 #endif /* Automatic byte order detection */
 
 #endif
