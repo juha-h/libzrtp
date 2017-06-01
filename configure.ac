@@ -85,12 +85,17 @@ AC_DEFINE(INLINE,[static inline],[Define inline construction for your platform])
 # Documentation
 #
 AM_CONDITIONAL([HAVE_DOXYGEN], [false])
-AC_CHECK_PROGS([DOXYGEN], [doxygen])
-if test -z "$DOXYGEN"; then
-  AC_MSG_WARN([Doxygen not found - continuing without Doxygen support])
+AC_ARG_ENABLE(docs,"generate documentation (requires doxygen)",, [enable_docs=yes])
+if test "$enable_docs" == "yes"; then
+  AC_CHECK_PROGS([DOXYGEN], [doxygen])
+  if test -z "$DOXYGEN"; then
+    AC_MSG_WARN([Doxygen not found - continuing without Doxygen support])
+  else
+    AM_CONDITIONAL([HAVE_DOXYGEN], [true])
+    AC_CONFIG_FILES([doc/Doxyfile])
+  fi
 else
-  AM_CONDITIONAL([HAVE_DOXYGEN], [true])
-  AC_CONFIG_FILES([doc/Doxyfile])
+  AC_MSG_WARN([Documentation generation disabled])
 fi
 
 #
