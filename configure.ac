@@ -34,7 +34,10 @@ esac
 AM_INIT_AUTOMAKE
 AX_PREFIX_CONFIG_H(include/zrtp_config_unix.h,ZRTP,config/config.h)
 
-CFLAGS="$CFLAGS -std=c99 -O2 -g3 -Wall -Wextra -Wno-unused-parameter -fno-strict-aliasing -fPIC -DZRTP_AUTOMAKE=1"
+if test -z "$CFLAGS"; then
+  CFLAGS="-O2 -g3 -Wall -Wextra -Wno-unused-parameter"
+fi
+CFLAGS="$CFLAGS -std=c99 -fno-strict-aliasing -fPIC -DZRTP_AUTOMAKE=1"
 
 # Configuring external libraries
 echo "========================= configuring bnlib =============================="
