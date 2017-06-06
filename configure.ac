@@ -34,7 +34,10 @@ esac
 AM_INIT_AUTOMAKE
 AX_PREFIX_CONFIG_H(include/zrtp_config_unix.h,ZRTP,config/config.h)
 
-CFLAGS="$CFLAGS -std=c99 -O2 -g3 -Wall -Wextra -Wno-unused-parameter -fno-strict-aliasing -fPIC -DZRTP_AUTOMAKE=1"
+if test -z "$CFLAGS"; then
+  CFLAGS="-O2 -g3 -Wall -Wextra -Wno-unused-parameter"
+fi
+CFLAGS="$CFLAGS -std=c99 -fno-strict-aliasing -fPIC -DZRTP_AUTOMAKE=1"
 
 # Configuring external libraries
 echo "========================= configuring bnlib =============================="
@@ -85,12 +88,17 @@ AC_DEFINE(INLINE,[static inline],[Define inline construction for your platform])
 # Documentation
 #
 AM_CONDITIONAL([HAVE_DOXYGEN], [false])
-AC_CHECK_PROGS([DOXYGEN], [doxygen])
-if test -z "$DOXYGEN"; then
-  AC_MSG_WARN([Doxygen not found - continuing without Doxygen support])
+AC_ARG_ENABLE(docs,"generate documentation (requires doxygen)",, [enable_docs=yes])
+if test "$enable_docs" == "yes"; then
+  AC_CHECK_PROGS([DOXYGEN], [doxygen])
+  if test -z "$DOXYGEN"; then
+    AC_MSG_WARN([Doxygen not found - continuing without Doxygen support])
+  else
+    AM_CONDITIONAL([HAVE_DOXYGEN], [true])
+    AC_CONFIG_FILES([doc/Doxyfile])
+  fi
 else
-  AM_CONDITIONAL([HAVE_DOXYGEN], [true])
-  AC_CONFIG_FILES([doc/Doxyfile])
+  AC_MSG_WARN([Documentation generation disabled])
 fi
 
 #
