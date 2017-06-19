@@ -451,7 +451,7 @@ void zrtp_print_env_settings(zrtp_config_t* config)
 	ZRTP_LOG(3,("zrtp","ZRTP Initialization Settings\n"));
 	ZRTP_LOG(3,("zrtp","                    client ID: %s\n", config->client_id));
 	ZRTP_LOG(3,("zrtp","                      license: %d\n", config->lic_mode));
-	ZRTP_LOG(3,("zrtp","                         MiTM: %s\n", config->is_mitm?"ENABLED":"DIABLED"));
+	ZRTP_LOG(3,("zrtp","                         MiTM: %s\n", config->is_mitm?"ENABLED":"DISABLED"));
 	ZRTP_LOG(3,("zrtp","                   cache path: %s\n", config->def_cache_path.length?config->def_cache_path.buffer:""));
 }
 
