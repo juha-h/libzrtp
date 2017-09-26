@@ -9,6 +9,8 @@
 
 #include <setjmp.h>
 #include <stdio.h>
+#include <stdarg.h>
+#include <string.h>
 
 #include "zrtp.h"
 #include "cmockery/cmockery.h"
@@ -33,6 +35,9 @@ void teardown() {
 static void session_init_fails_with_no_dh2k() {
 	zrtp_profile_t profile;
 	zrtp_status_t s;
+	zrtp_zid_t zid;
+
+	memset(zid, 0, sizeof(zid));
 
 	zrtp_session_t *new_session;
 
@@ -42,6 +47,7 @@ static void session_init_fails_with_no_dh2k() {
 	new_session = NULL;
 	s = zrtp_session_init(zrtp,
 			&profile,
+			zid,
 			ZRTP_SIGNALING_ROLE_INITIATOR,
 			&new_session);
 
@@ -56,6 +62,7 @@ static void session_init_fails_with_no_dh2k() {
 	new_session = NULL;
 	s = zrtp_session_init(zrtp,
 			&profile,
+			zid,
 			ZRTP_SIGNALING_ROLE_INITIATOR,
 			&new_session);
 
@@ -69,6 +76,7 @@ static void session_init_fails_with_no_dh2k() {
 	new_session = NULL;
 	s = zrtp_session_init(zrtp,
 			&profile,
+			zid,
 			ZRTP_SIGNALING_ROLE_INITIATOR,
 			&new_session);
 

@@ -87,18 +87,68 @@ libzrtp_a_SOURCES = $(top_srcdir)/src/zrtp.c \
 					$(top_srcdir)/src/zrtp_iface_cache.c
 					$(top_srcdir)/src/zrtp_engine_driven.c
 
-check_PROGRAMS = cache_test
+check_PROGRAMS = cache_test cipher_test dh_test dk_test ecdh_test enrollment_test go_secure_test \
+				 hash_test minor_bugs_test sasrelay_test srtp_replay_test zrtphash_test
 
-cache_test_CPPFLAGS = 	-I$(top_srcdir)/include \
+TESTS = 		 cache_test cipher_test dh_test dk_test ecdh_test enrollment_test go_secure_test \
+				 hash_test minor_bugs_test sasrelay_test srtp_replay_test zrtphash_test
+
+TEST_CPPFLAGS = 	-I$(top_srcdir)/include \
 			-I$(top_srcdir)/. \
 			-I$(top_srcdir)/test \
 			-I$(top_srcdir)/test/cmockery \
 			-I$(top_srcdir)/third_party/bgaes \
 			-I$(top_srcdir)/third_party/bnlib
 
-cache_test_SOURCES = $(top_srcdir)/test/cmockery/cmockery.c \
-					 $(top_srcdir)/test/cache_test.c
+cache_test_CPPFLAGS = $(TEST_CPPFLAGS)
+cache_test_SOURCES = $(top_srcdir)/test/cmockery/cmockery.c $(top_srcdir)/test/cache_test.c
 cache_test_LDADD   = libzrtp.a  $(top_srcdir)/third_party/bnlib/libbn.a -lpthread
+
+cipher_test_CPPFLAGS = $(TEST_CPPFLAGS)
+cipher_test_SOURCES = $(top_srcdir)/test/cmockery/cmockery.c $(top_srcdir)/test/cipher_test.c
+cipher_test_LDADD   = libzrtp.a  $(top_srcdir)/third_party/bnlib/libbn.a -lpthread
+
+dh_test_CPPFLAGS = $(TEST_CPPFLAGS)
+dh_test_SOURCES = $(top_srcdir)/test/cmockery/cmockery.c $(top_srcdir)/test/dh_test.c
+dh_test_LDADD   = libzrtp.a  $(top_srcdir)/third_party/bnlib/libbn.a -lpthread
+
+dk_test_CPPFLAGS = $(TEST_CPPFLAGS)
+dk_test_SOURCES = $(top_srcdir)/test/cmockery/cmockery.c $(top_srcdir)/test/dk_test.c
+dk_test_LDADD   = libzrtp.a  $(top_srcdir)/third_party/bnlib/libbn.a -lpthread
+
+ecdh_test_CPPFLAGS = $(TEST_CPPFLAGS)
+ecdh_test_SOURCES = $(top_srcdir)/test/cmockery/cmockery.c $(top_srcdir)/test/ecdh_test.c
+ecdh_test_LDADD   = libzrtp.a  $(top_srcdir)/third_party/bnlib/libbn.a -lpthread
+
+enrollment_test_CPPFLAGS = $(TEST_CPPFLAGS)
+enrollment_test_SOURCES = $(top_srcdir)/test/cmockery/cmockery.c $(top_srcdir)/test/enrollment_test.c $(top_srcdir)/test/test_engine.c $(top_srcdir)/test/queue.c
+enrollment_test_LDADD   = libzrtp.a  $(top_srcdir)/third_party/bnlib/libbn.a -lpthread
+
+go_secure_test_CPPFLAGS = $(TEST_CPPFLAGS)
+go_secure_test_SOURCES = $(top_srcdir)/test/cmockery/cmockery.c $(top_srcdir)/test/go_secure_test.c $(top_srcdir)/test/test_engine.c $(top_srcdir)/test/queue.c
+go_secure_test_LDADD   = libzrtp.a  $(top_srcdir)/third_party/bnlib/libbn.a -lpthread
+
+hash_test_CPPFLAGS = $(TEST_CPPFLAGS)
+hash_test_SOURCES = $(top_srcdir)/test/cmockery/cmockery.c $(top_srcdir)/test/hash_test.c
+hash_test_LDADD   = libzrtp.a  $(top_srcdir)/third_party/bnlib/libbn.a -lpthread
+
+minor_bugs_test_CPPFLAGS = $(TEST_CPPFLAGS)
+minor_bugs_test_SOURCES = $(top_srcdir)/test/cmockery/cmockery.c $(top_srcdir)/test/minor_bugs_test.c
+minor_bugs_test_LDADD   = libzrtp.a  $(top_srcdir)/third_party/bnlib/libbn.a -lpthread
+
+sasrelay_test_CPPFLAGS = $(TEST_CPPFLAGS)
+sasrelay_test_SOURCES = $(top_srcdir)/test/cmockery/cmockery.c $(top_srcdir)/test/sasrelay_test.c $(top_srcdir)/test/test_engine.c $(top_srcdir)/test/queue.c
+
+sasrelay_test_LDADD   = libzrtp.a  $(top_srcdir)/third_party/bnlib/libbn.a -lpthread
+
+srtp_replay_test_CPPFLAGS = $(TEST_CPPFLAGS)
+srtp_replay_test_SOURCES = $(top_srcdir)/test/cmockery/cmockery.c $(top_srcdir)/test/srtp_replay_test.c
+srtp_replay_test_LDADD   = libzrtp.a  $(top_srcdir)/third_party/bnlib/libbn.a -lpthread
+
+zrtphash_test_CPPFLAGS = $(TEST_CPPFLAGS)
+zrtphash_test_SOURCES = $(top_srcdir)/test/cmockery/cmockery.c $(top_srcdir)/test/zrtphash_test.c $(top_srcdir)/test/test_engine.c $(top_srcdir)/test/queue.c
+
+zrtphash_test_LDADD   = libzrtp.a  $(top_srcdir)/third_party/bnlib/libbn.a -lpthread
 
 SUBDIRS =  third_party/bnlib
 

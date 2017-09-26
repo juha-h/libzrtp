@@ -9,6 +9,7 @@
 
 #include <setjmp.h>
 #include <stdio.h>
+#include <stdarg.h>
 
 #include "zrtp.h"
 #include "cmockery/cmockery.h"
