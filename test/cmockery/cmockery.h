@@ -48,7 +48,7 @@ int __stdcall IsDebuggerPresent();
  * pointer or integer supported by the compiler. */
 #ifndef _UINTMAX_T
 #define _UINTMAX_T
-typedef unsigned long long uintmax_t;
+//typedef unsigned long long uintmax_t;
 #endif /* _UINTMAX_T */
 
 /* Printf formats used to display uintmax_t. */

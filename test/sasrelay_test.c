@@ -10,6 +10,8 @@
 #include <setjmp.h>		/*chmockery dependency*/
 #include <stdio.h>		/*chmockery dependency*/
 #include <unistd.h> 	/*for usleep*/
+#include <stdint.h>
+#include <stdarg.h>
 
 #include "cmockery/cmockery.h"
 #include "test_engine.h"
