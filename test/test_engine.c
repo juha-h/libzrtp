@@ -277,7 +277,7 @@ void *process_outgoing(void *param)
 
 	while (the_endpoint->is_running) {
 		zrtp_test_stream_t* stream = NULL;
-		unsigned i = 0;
+		unsigned i;
 
 		zrtp_status_t s = zrtp_status_fail;
 		zrtp_test_packet_t* packet;
@@ -318,7 +318,7 @@ void *process_outgoing(void *param)
 			rtp_hdr->ts = zrtp_hton32((uint32_t)(zrtp_time_now()/1000));
 
 			/* Get RTP body from PGP words lists */
-			word = (char*)(i++ ? hash_word_list_odd[packets_counter % 256] : hash_word_list_even[packets_counter % 256]);
+			word = (char*)(i ? hash_word_list_odd[packets_counter % 256] : hash_word_list_even[packets_counter % 256]);
 
 			zrtp_memcpy(packet->body + sizeof(zrtp_rtp_hdr_t), word, (uint32_t)strlen(word));
 			packet->length = sizeof(zrtp_rtp_hdr_t) + (uint32_t)strlen(word);
@@ -336,7 +336,7 @@ void *process_outgoing(void *param)
 
 			/* Get RTP body from PGP words lists. Put RTCP marker at the beginning */
 			zrtp_memcpy(packet->body + sizeof(zrtp_rtcp_hdr_t), "RTCP", 4);
-			word = (char*)( i++ ? hash_word_list_odd[packets_counter % 256] : hash_word_list_even[packets_counter % 256]);
+			word = (char*)( i ? hash_word_list_odd[packets_counter % 256] : hash_word_list_even[packets_counter % 256]);
 
 			zrtp_memcpy(packet->body + sizeof(zrtp_rtcp_hdr_t) + 4, word, (uint32_t)strlen(word));
 			packet->length = sizeof(zrtp_rtcp_hdr_t) + (uint32_t)strlen(word) + 4;
