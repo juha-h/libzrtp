@@ -376,7 +376,7 @@ zrtp_status_t _zrtp_packet_preparse( zrtp_stream_t* stream,
 	 * - length according to type
 	 * - hash (DOS attack)
 	 */
-	if (is_input && (info->type != ZRTP_NONE) && (info->type != ZRTP_UNPARSED))
+	if (is_input && (info->type != ZRTP_NONE) && (info->type != ZRTP_UNPARSED) && stream->zrtp)
 	{
 		zrtp_string32_t hash_str = ZSTR_INIT_EMPTY(hash_str);			
 		zrtp_hash_t *hash = zrtp_comp_find(ZRTP_CC_HASH, ZRTP_HASH_SHA256, stream->zrtp);
