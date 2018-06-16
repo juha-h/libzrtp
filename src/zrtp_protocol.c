@@ -254,6 +254,9 @@ zrtp_status_t _zrtp_protocol_decrypt( zrtp_protocol_t *proto,
 {
 	zrtp_status_t s = zrtp_status_ok;
 
+	if (!proto)
+		return zrtp_error_software;
+
 	if (is_rtp) {
 		s = zrtp_srtp_unprotect(proto->context->zrtp->srtp_global, proto->_srtp, packet);
 	} else {
