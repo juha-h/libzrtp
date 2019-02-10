@@ -94,8 +94,9 @@ rm -f conftest*
   # with just -lgcc.  If it's not GCC, do the normal -c thing.
   # These substitutions are used in the Makefile to force that behaviour.
 #  GCCMAGIC1='-Wl,-r -nostdlib'
-  GCCMAGIC1='-r -nostdlib'
-  GCCMAGIC2=-lgcc
+#  GCCMAGIC2=-lgcc
+  GCCMAGIC1=-c
+  GCCMAGIC2=
 else
   GCCMAGIC1=-c
   GCCMAGIC2=
