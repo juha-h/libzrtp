@@ -417,6 +417,7 @@ VOID_RETURN sha256_end(unsigned char hval[], sha256_ctx ctx[1])
     sha_end1(hval, ctx, SHA256_DIGEST_SIZE);
 }
 
+/* This function is not needed by libzrtp and may conflict with other libs
 VOID_RETURN sha256(unsigned char hval[], const unsigned char data[], unsigned long len)
 {   sha256_ctx  cx[1];
 
@@ -424,6 +425,7 @@ VOID_RETURN sha256(unsigned char hval[], const unsigned char data[], unsigned lo
     sha256_hash(data, len, cx);
     sha_end1(hval, cx, SHA256_DIGEST_SIZE);
 }
+*/
 
 #endif
 

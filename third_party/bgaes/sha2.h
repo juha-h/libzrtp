@@ -86,7 +86,10 @@ VOID_RETURN sha224(unsigned char hval[], const unsigned char data[], unsigned lo
 VOID_RETURN sha256_begin(sha256_ctx ctx[1]);
 VOID_RETURN sha256_hash(const unsigned char data[], unsigned long len, sha256_ctx ctx[1]);
 VOID_RETURN sha256_end(unsigned char hval[], sha256_ctx ctx[1]);
+
+/* This function is not needed by libzrtp and may conflict with other libs
 VOID_RETURN sha256(unsigned char hval[], const unsigned char data[], unsigned long len);
+*/
 
 #ifndef SHA_64BIT
 
